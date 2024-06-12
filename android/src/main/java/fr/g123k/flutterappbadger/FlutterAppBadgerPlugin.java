@@ -3,13 +3,13 @@ package fr.g123k.flutterappbadger;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.preference.PreferenceManager;
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
 import io.flutter.plugin.common.MethodCall;
-import android.preference.PreferenceManager;
 import android.content.SharedPreferences;
 import me.leolin.shortcutbadger.ShortcutBadger;
 
@@ -51,7 +51,7 @@ public class FlutterAppBadgerPlugin implements MethodCallHandler, FlutterPlugin 
 
         SharedPreferences.Editor editor = prefs.edit();
         editor.putInt("flutter_app_badger_count_key", count);
-        editor.commit();
+        editor.apply();
         result.success(null);
         break;
 
@@ -59,9 +59,9 @@ public class FlutterAppBadgerPlugin implements MethodCallHandler, FlutterPlugin 
         ShortcutBadger.removeCount(applicationContext);
         count = 0;
 
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putInt("flutter_app_badger_count_key", count);
-        editor.commit();
+        SharedPreferences.Editor removeEditor = prefs.edit();
+        removeEditor.putInt("flutter_app_badger_count_key", count);
+        removeEditor.apply();
         result.success(null);
         break;
 

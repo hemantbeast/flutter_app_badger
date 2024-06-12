@@ -22,10 +22,10 @@ rootProject.allprojects {
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 33
+    compileSdk 34
 
     defaultConfig {
-        minSdkVersion 19
+        minSdkVersion 23
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     lintOptions {
@@ -45,4 +45,5 @@ android {
 dependencies {
     //noinspection GradleDependency
     implementation "me.leolin:ShortcutBadger:1.1.22@aar"
+    implementation 'androidx.preference:preference:1.2.1'
 }
